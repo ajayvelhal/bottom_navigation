@@ -35,17 +35,35 @@ class _HomeState extends State<HomePage> {
 }
 
 class MyBody extends StatelessWidget {
+  AlertDialog dialog = new AlertDialog(
+    content: new Text("You Clicked me"),
+    title: Text("Alert"),
+  );
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-        child: Center(
-          child: MaterialButton(
-              child: Text("Click ME"),
-              onPressed: () => Scaffold.of(context).showSnackBar(new SnackBar(
-                    content: new Text("You Clicked Me"),
-                    duration: new Duration(seconds: 3),
-                  ))),
-        ));
+    return Stack(
+      children: <Widget>[
+        Container(
+          child: Center(
+            child: MaterialButton(
+                child: Text("Click ME"),
+                onPressed: () => Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("You Clicked Me"),
+                      duration: new Duration(seconds: 3),
+                    ))),
+          ),
+        ),
+        Container(
+          child: Center(
+            child: MaterialButton(
+                child: Text("Click ME For Alert Dialog Box"),
+                // ignore: deprecated_member_use
+                onPressed: () => showDialog(context: context, child: dialog)),
+          ),
+        )
+      ],
+    );
   }
 }
